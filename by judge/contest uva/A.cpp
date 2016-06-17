@@ -1,56 +1,53 @@
 #include<iostream>
-#include<algorithm>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
 #include<vector>
-
+#include<map>
+#include<string>
+#include<sstream>
+#include<set>
+#include<stack>
+#include<queue>
+#include<algorithm>
+#define PB push_back
+#define MP make_pair
+#define ALL(x) (x).begin(),(x).end()
 using namespace std;
-
+bool test(vector<int> a,vector<int> b); 
 int main(){
-	int n,a;
-	vector<int> ss,sn;
-	bool ord;
-	cin>>n;
-
+	int N;
+	cin>>N;
+	vector<int> v,vo;
+	int a;
 	cout<<"Lumberjacks:"<<endl;
-	while(n--){
-		ord=true;
-		int k=10;
-		while(k--){
+	while(N--){
+		
+		for(int i=0;i<10;i++){
 			cin>>a;
-			ss.push_back(a);
-			sn.push_back(a);
+			v.PB(a);	
 		}
-		sort(ss.begin(),ss.end());
-
-		int l=ss.size();
-		
-//for(int i=0;i<l;i++)	cout<<ss[i]<<" ";
-//cout<<endl;
-
-		
-		for(int i=0;i<l;i++){
-			if(ss[i]!=sn[i]){ ord=false; break;}
-		}
-
-		if(!ord){
-			ord=true;
-			for(int i=0;i<l/2;i++){
-				swap(ss[i],ss[l-1-i]);
-			}
-//for(int i=0;i<l;i++)	cout<<ss[i]<<" ";
-//cout<<endl;
-
-			for(int i=0;i<l;i++){
-				if(ss[i]!=sn[i]){ ord=false; break;}
-			}	
-			if(!ord)	cout<<"Unordered";
-			else		cout<<"Ordered";
-		}else	cout<<"Ordered";
-		
-		cout<<endl;
-				
-		ss.clear();
-		sn.clear();
+		vo=v;
+		sort(ALL(vo));
+		if(test(vo,v)) cout<<"Ordered"<<endl;
+		else cout<<"Unordered"<<endl;
+		v.clear();
+		vo.clear();
 	}
-
+	
 	return 0;
 }
+bool test(vector<int> a,vector<int> b){
+		bool b1=true,b2=true;
+		for(int i=0;i<10;i++) if(a[i]!=b[i]) b1=false;
+		reverse(ALL(a));
+		for(int i=0;i<10;i++) if(a[i]!=b[i]) b2=false;
+		if(b1 || b2) return true;
+		return false;
+}
+
+
+
+
+
+

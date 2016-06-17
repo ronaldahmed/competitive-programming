@@ -1,57 +1,60 @@
 #include<iostream>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<cmath>
+#include<vector>
+#include<map>
 #include<string>
 #include<sstream>
-#include<cstdio>
-#include<cmath>
+#include<set>
+#include<stack>
+#include<cstring>
+#include<queue>
 #include<algorithm>
+#define PB push_back
+#define MP make_pair
+#define ALL(x) (x).begin(),(x).end()
+#define SZ(x) (x).size()
 
 using namespace std;
 
-string num(double nn);
-double round(double a);
-
 int main(){
-	int n,m=12;
-	double s,a;
-	int j=1;
-	cin>>n;
-
-	while(n--){
-		m=12;
-		s=0.0;
-		while(m--){	cin>>a;	s+=a;	}
-		s/=12.0;
-//cout<<s<<endl;
-		cout<<j++<<" $"<<num(s)<<endl;
+	int N,j=0;
+	cin>>N;
+	double a,suma;
+	while(N--){
+		suma=0.0;
+		for(int i=0;i<12;i++){
+			cin>>a;
+			suma+=a;
+		}
+		suma/=12.0;
+	
+		char ans[1000];
+		int pq;
+		pq=sprintf(ans,"%.2lf",suma);
+		
+		printf("%d $",++j);
+		stack<char> pilaResp;
+		pq--;
+		for(int nt=0;nt<3;nt++){
+		pilaResp.push(ans[pq]); 
+		pq--;
+		}
+		
+		for(int k=0;pq>=0;pq--,k++){
+			if(k%3==0&&k!=0) 
+			pilaResp.push(',');
+			pilaResp.push(ans[pq]);
+		}
+		while(!pilaResp.empty())
+		{
+			printf("%c",pilaResp.top());
+			pilaResp.pop();
+		}
+		printf("\n");
 	}
 	return 0;
 }
 
-string num(double nn){
-	int num,l;
-	stringstream ss;
-	string sn,si;
-
-	if(floor(nn)!=ceil(nn))
-		nn=(round(nn*100))/100;
-	ss<<nn;
-	ss>>sn;
-	reverse(sn.begin(),sn.end());
-
-	if(floor(nn)==ceil(nn))
-		sn.insert(0,"00.");
-	l=sn.size();
-//cout<<"l: "<<l<<endl;
-
-	if(l>6){
-		sn.insert(6,",");
-		if(l>10)			sn.insert(10,",");
-	}
-	
-	reverse(sn.begin(),sn.end());
-	return sn;
-}
-
-double round(double a){
-	return floor(a+0.5);
-}
