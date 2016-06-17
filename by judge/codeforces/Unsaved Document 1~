@@ -1,0 +1,12 @@
+#include <iostream>
+#include <cstdio>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+typedef 
+
+
+int main(){
+	return 0;
+}

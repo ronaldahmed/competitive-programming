@@ -1,0 +1,20 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <cmath>
+
+#define	mp 	make_pair
+#define	REP(i,x,y)		for(int (i)=(x); i < (y); ++i)
+#define	DEBUG(x)			cout << (x) << endl;
+#define	inf						(1<<30)
+
+using namespace std;
+typedef long long ll;
+typedef pair<int,int> pii;
+const int maxn	= 	1000001;
+
+int main(){
+	return 0;
+}
